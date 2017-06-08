@@ -1,33 +1,27 @@
-package com.taku.kotlinarapp
+package com.taku.kotlinarapp.View.Activity
 
 import android.Manifest
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.Manifest.permission
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import android.Manifest.permission.READ_PHONE_STATE
-import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.Manifest.permission.ACCESS_NETWORK_STATE
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.Manifest.permission.INTERNET
 import android.content.Intent
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
-import android.R.string.cancel
 import android.content.DialogInterface
+import android.os.Handler
 import android.support.v7.app.AlertDialog
+import com.taku.kotlinarapp.R
 
 
 class SplashActivity : AppCompatActivity() {
 
-    private var isStartActivity: Boolean = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        permissionsRequest()
+        val handler: Handler = Handler()
+        handler.postDelayed(Runnable {
+            permissionsRequest()
+        }, 2000)
     }
 
     private fun permissionsRequest() {
@@ -54,7 +48,6 @@ class SplashActivity : AppCompatActivity() {
                 if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startMainActivity()
                 } else {
-                    isStartActivity = false
                     permissionsNotSelected()
                 }
             }
