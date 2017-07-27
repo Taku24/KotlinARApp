@@ -16,4 +16,9 @@ class Constans {
         val SHOW_AR = "show_ar"
     }
 
+    object showcaseId {
+        val SHOWCASE_ID_MAIN = "showcase_id_main"
+        val SHOWCASE_ID_SETTING = "showcase_id_setting"
+    }
+
 }

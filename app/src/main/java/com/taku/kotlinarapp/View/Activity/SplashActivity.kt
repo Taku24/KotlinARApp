@@ -7,7 +7,6 @@ import android.content.Intent
 import android.support.v4.app.ActivityCompat
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
-import android.content.DialogInterface
 import android.os.Handler
 import android.support.v7.app.AlertDialog
 import com.taku.kotlinarapp.R
@@ -19,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         val handler: Handler = Handler()
-        handler.postDelayed(Runnable {
+        handler.postDelayed({
             permissionsRequest()
         }, 2000)
     }
@@ -58,7 +57,7 @@ class SplashActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Permissions Requred")
         builder.setMessage("Please enable the requested permissions in the app settings in order to use this demo app")
-        builder.setNeutralButton("Cancel", DialogInterface.OnClickListener { dialog, id ->
+        builder.setNeutralButton("Cancel", { dialog, _ ->
             dialog.cancel()
             System.exit(1)
         })
@@ -69,6 +68,7 @@ class SplashActivity : AppCompatActivity() {
     private fun startMainActivity() {
         val intent: Intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
 
